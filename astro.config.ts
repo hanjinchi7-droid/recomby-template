@@ -25,7 +25,7 @@ export default defineConfig({
   // --- 核心修改区域开始 ---
 
   // 1. 你的自定义域名 (必须带 https)
-  site: 'https://recomby.ai',
+  site: 'https://blog.recomby.ai',
 
   // 2. 基础路径。因为你是自定义域名，所以是根目录 '/'。
   // 如果你哪天不想要域名了，想用 username.github.io/repo-name，就把这里改成 '/repo-name'
