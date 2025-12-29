@@ -1,0 +1,126 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Headline from '~/components/ui/Headline.astro';
+import { fetchPosts } from '~/utils/blog';
+import { getPermalink } from '~/utils/permalinks';
+import type { Taxonomy as Tag } from '~/types';
+
+// 1. 数据获取
+const posts = await fetchPosts();
+const allTags: Record<string, Tag> = {};
+const tagCounts: Record<string, number> = {};
+
+posts.forEach((post) => {
+  if (Array.isArray(post.tags)) {
+    post.tags.forEach((tag) => {
+      allTags[tag.slug] = tag;
+      tagCounts[tag.slug] = (tagCounts[tag.slug] || 0) + 1;
+    });
+  }
+});
+
+const tags = Object.values(allTags).sort((a, b) => a.title.localeCompare(b.title));
+
+const metadata = {
+  title: 'Tags',
+  robots: { index: true, follow: true },
+};
+---
+
+<Layout metadata={metadata}>
+  <section class="px-4 py-8 mx-auto max-w-6xl lg:py-12">
+    
+    <Headline
+      title="Explore by Topics"
+      subtitle="Discover articles based on your interests."
+    />
+
+    <div class="max-w-md mx-auto mb-10 relative">
+      <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+        <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" fill="none" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/></svg>
+      </div>
+      <input 
+        type="text" 
+        id="tag-search-input" 
+        class="block w-full p-3 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-slate-800 dark:border-slate-700 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 transition-all shadow-sm" 
+        placeholder="Search tags..." 
+        autocomplete="off"
+      >
+    </div>
+
+    <div id="tags-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
+      {tags.map((tag) => (
+        <a 
+          href={getPermalink(tag.slug, 'tag')}
+          class="
+            tag-item 
+            group 
+            relative 
+            flex flex-col items-center justify-center 
+            h-24  /* 强制固定高度，确保整齐 */
+            p-2 
+            bg-white dark:bg-slate-900 
+            border border-gray-200 dark:border-slate-700 
+            rounded-lg 
+            shadow-sm 
+            cursor-pointer 
+            select-none
+            transition-all duration-150 ease-in-out
+            hover:border-blue-400 dark:hover:border-blue-500
+            hover:shadow-md 
+            hover:-translate-y-1 
+            active:scale-95 active:bg-blue-50 dark:active:bg-slate-800
+          "
+          data-title={tag.title.toLowerCase()}
+        >
+          <span class="text-sm font-bold text-gray-800 dark:text-gray-200 text-center line-clamp-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+            {tag.title}
+          </span>
+          
+          <span class="text-[10px] uppercase tracking-wide text-gray-400 mt-1">
+            {tagCounts[tag.slug]} POSTS
+          </span>
+        </a>
+      ))}
+    </div>
+
+    <div id="no-results" class="hidden text-center py-10 text-gray-500 text-sm">
+      No tags found.
+    </div>
+
+  </section>
+</Layout>
+
+<script is:inline>
+  // 搜索逻辑
+  document.addEventListener('astro:page-load', () => initSearch());
+  document.addEventListener('DOMContentLoaded', initSearch);
+
+  function initSearch() {
+    const input = document.getElementById('tag-search-input');
+    const cards = document.querySelectorAll('.tag-item');
+    const noResults = document.getElementById('no-results');
+
+    if (!input) return;
+
+    input.addEventListener('input', (e) => {
+      const term = e.target.value.toLowerCase().trim();
+      let hasResults = false;
+
+      cards.forEach((card) => {
+        const title = card.getAttribute('data-title');
+        if (title.includes(term)) {
+          card.style.display = 'flex'; // 恢复显示
+          hasResults = true;
+        } else {
+          card.style.display = 'none'; // 隐藏
+        }
+      });
+
+      if (noResults) {
+        if (hasResults) noResults.classList.add('hidden');
+        else noResults.classList.remove('hidden');
+      }
+    });
+  }
+</script>

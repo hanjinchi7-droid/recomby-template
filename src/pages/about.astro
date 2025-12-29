@@ -1,0 +1,156 @@
+---
+import Features2 from '~/components/widgets/Features2.astro';
+import Features3 from '~/components/widgets/Features3.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Stats from '~/components/widgets/Stats.astro';
+import Steps2 from '~/components/widgets/Steps2.astro';
+import Layout from '~/layouts/PageLayout.astro';
+
+const metadata = {
+  title: 'About Recomby.ai',
+};
+---
+
+<Layout metadata={metadata}>
+  <Hero
+    tagline="About Recomby.ai"
+    image={{
+      // 新图：抽象的几何矩阵/数据结构，更具未来感和精密感
+      src: 'https://images.unsplash.com/photo-1604871000636-074fa5117945?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+      alt: 'Abstract geometric data structure and infrastructure',
+    }}
+  >
+    <Fragment slot="title">
+      In the age of AI Search, <br />
+      <span class="text-accent dark:text-white"> Precision Beats Power</span>
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      Recomby.ai is an innovative technology company specializing in <strong>AI Search Optimization (GEO)</strong> and <strong>Agent API Infrastructure</strong>. We help "the best match" defeat "the loudest voice."
+    </Fragment>
+  </Hero>
+
+  <Stats
+    title="Our Impact"
+    stats={[
+      { title: 'Core Principles', amount: '4' },
+      { title: 'Key Services', amount: '2' },
+      { title: 'Goal', amount: 'No.1' },
+      { title: 'Focus', amount: '100%' },
+    ]}
+  />
+
+  <Features3
+    title="Our Core Services"
+    subtitle="We don't rely on volume or capital, but on making your solution the 'best match' in AI's eyes."
+    columns={3}
+    isBeforeContent={true}
+    items={[
+      {
+        title: 'AI Search Optimization (GEO)',
+        description:
+          'Optimize your visibility in AI search engines. We provide consulting for structured data standards (llms.txt, schema) to enhance brand exposure.',
+        icon: 'tabler:seo',
+      },
+      {
+        title: 'Agent API Infrastructure',
+        description:
+          'Build reliable and efficient data interaction infrastructure. We provide standardized API interfaces to help enterprises integrate into AI ecosystems.',
+        icon: 'tabler:api',
+      },
+      {
+        title: 'Structured Context',
+        description:
+          'Transform your proprietary knowledge into "citable modules" that AI models can understand, trust, and recommend to users.',
+        icon: 'tabler:database',
+      },
+    ]}
+  />
+
+  <Features3
+    columns={2}
+    title="Our Philosophy"
+    isAfterContent={true}
+    items={[
+      {
+        title: 'Best Match Defeats the Best',
+        description:
+          'Being the right answer matters more than being the biggest player. We help you win by relevance, not just ad spend.',
+        icon: 'tabler:trophy',
+      },
+      {
+        title: 'Where Precision Beats Power',
+        description:
+          'In the age of AI agents, targeted relevance wins over broad reach. We focus on high-value, specific matching.',
+        icon: 'tabler:target',
+      },
+      {
+        title: 'Get Recommended by AI',
+        description:
+          'Position yourself where AI can discover and trust you. Don’t get left behind by the times.',
+        icon: 'tabler:thumb-up',
+      },
+      {
+        title: 'Agent-Oriented',
+        description:
+          'From Human-Oriented to Agent-Oriented. Build for intelligent agents, not just human visitors.',
+        icon: 'tabler:robot',
+      },
+    ]}
+    image={{
+      // 新图：密集的白色立方体堆叠，隐喻结构化数据块和基石
+      src: 'https://images.unsplash.com/photo-1620121692029-d088224ddc74?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+      alt: 'Structured data blocks and organized knowledge',
+    }}
+  />
+
+  <Steps2
+    title="Why Recomby.ai?"
+    subtitle="The rules of the game have changed. Traditional SEO is fading; AI recommendation is the future."
+    items={[
+      {
+        title: 'The Challenge',
+        description:
+          'Users no longer search for keywords; they describe scenarios. Traditional "loudest voice" marketing strategies are failing in the face of AI reasoning.',
+      },
+      {
+        title: 'Our Solution',
+        description:
+          'We reverse-engineer from "the customers you want" and "your real capabilities" to create AI-ready assets and APIs.',
+      },
+      {
+        title: 'The Outcome',
+        description:
+          'Your solution becomes the "default candidate" in AI answers, connecting you with the 1,000 true fans who genuinely need your expertise.',
+      },
+    ]}
+  />
+
+  <Features2
+    title="Connect with Us"
+    tagline="Contact"
+    columns={2}
+    items={[
+      {
+        title: 'Official Website',
+        description: '<a href="https://recomby.ai" target="_blank" class="hover:underline transition duration-200">recomby.ai</a>',
+        icon: 'tabler:world',
+      },
+      {
+        title: 'Email Us',
+        description: '<a href="mailto:contact@recomby.ai" class="hover:underline transition duration-200">contact@recomby.ai</a>',
+        icon: 'tabler:mail',
+      },
+      {
+        title: 'Join on Reddit',
+        description: '<a href="https://www.reddit.com/r/recomby_ai/" target="_blank" class="hover:underline transition duration-200">r/recomby_ai</a>',
+        icon: 'tabler:brand-reddit',
+      },
+      {
+        title: 'Explore on GitHub',
+        description: '<a href="https://github.com/recomby-ai" target="_blank" class="hover:underline transition duration-200">@recomby-ai</a>',
+        icon: 'tabler:brand-github',
+      },
+    ]}
+  />
+</Layout>

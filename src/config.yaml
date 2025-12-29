@@ -1,0 +1,72 @@
+site:
+  name: Recomby.ai
+  site: 'https://recomby.ai' # 根据你 navigation.js 的 footer 链接修改
+  base: '/'
+  trailingSlash: false
+
+  googleSiteVerificationId: orcPxI47GSa-cRvY11tUe6iGg2IO_RPvnA1q95iEM3M # 如果你有新的验证码，记得替换这里
+
+# Default SEO metadata
+metadata:
+  title:
+    default: Recomby.ai # 修改为你的品牌名
+    template: '%s — Recomby.ai' # 修改后缀
+  description: "Recomby.ai - Empowering your projects with AI solutions." # 这里的描述建议根据你的具体业务修改，目前是一个占位符
+  robots:
+    index: true
+    follow: true
+  openGraph:
+    site_name: Recomby.ai # 修改 OG 名称
+    images:
+      - url: '~/assets/images/default.png' # 建议后续替换成你自己的 OpenGraph 封面图
+        width: 1200
+        height: 628
+    type: website
+  twitter:
+    handle: '@recomby_ai' # 根据你的Reddit ID猜测的，如果没有Twitter可以留空或填正确的
+    site: '@recomby_ai'
+    cardType: summary_large_image
+
+i18n:
+  language: en
+  textDirection: ltr
+
+apps:
+  blog:
+    isEnabled: true
+    postsPerPage: 6
+
+    post:
+      isEnabled: true
+      permalink: '/%slug%' # Variables: %slug%, %year%, %month%, %day%, %hour%, %minute%, %second%, %category%
+      robots:
+        index: true
+
+    list:
+      isEnabled: true
+      pathname: '/' # 这里保留原样。但在你的 nav 中 Blog 单独有链接，如果主页不是博客列表，这里可能需要改为 'blog'
+      robots:
+        index: true
+
+    category:
+      isEnabled: true
+      pathname: 'category' 
+      robots:
+        index: true
+
+    tag:
+      isEnabled: true
+      pathname: 'tag' 
+      robots:
+        index: false
+
+    isRelatedPostsEnabled: true
+    relatedPostsCount: 4
+
+analytics:
+  vendors:
+    googleAnalytics:
+      id: null # 如果有 GA ID，填在这里，例如 "G-XXXXXXXXXX"
+
+ui:
+  theme: 'system'
