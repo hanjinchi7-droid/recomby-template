@@ -2,8 +2,8 @@
 import Features2 from '~/components/widgets/Features2.astro';
 import Features3 from '~/components/widgets/Features3.astro';
 import Hero from '~/components/widgets/Hero.astro';
-import Stats from '~/components/widgets/Stats.astro';
 import Steps2 from '~/components/widgets/Steps2.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
 import Layout from '~/layouts/PageLayout.astro';
 
 const metadata = {
@@ -15,14 +15,13 @@ const metadata = {
   <Hero
     tagline="About Recomby.ai"
     image={{
-      // 新图：抽象的几何矩阵/数据结构，更具未来感和精密感
       src: 'https://images.unsplash.com/photo-1604871000636-074fa5117945?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
-      alt: 'Abstract geometric data structure and infrastructure',
+      alt: 'Abstract geometric data structure',
     }}
   >
     <Fragment slot="title">
       In the age of AI Search, <br />
-      <span class="text-accent dark:text-white"> Precision Beats Power</span>
+      <span class="text-accent dark:text-white highlight"> Precision Beats Power</span>
     </Fragment>
 
     <Fragment slot="subtitle">
@@ -32,42 +31,37 @@ const metadata = {
     </Fragment>
   </Hero>
 
-  <Stats
-    title="Our Impact"
-    stats={[
-      { title: 'Core Principles', amount: '4' },
-      { title: 'Key Services', amount: '2' },
-      { title: 'Goal', amount: 'No.1' },
-      { title: 'Focus', amount: '100%' },
-    ]}
-  />
-
-  <Features3
-    title="Our Core Services"
-    subtitle="We don't rely on volume or capital, but on making your solution the 'best match' in AI's eyes."
-    columns={3}
-    isBeforeContent={true}
+  <Features2
+    title="Ready for the AI Era?"
+    subtitle="Our core philosophy defines how we build for the future."
+    columns={4}
     items={[
       {
-        title: 'AI Search Optimization (GEO)',
-        description:
-          'Optimize your visibility in AI search engines. We provide consulting for structured data standards (llms.txt, schema) to enhance brand exposure.',
-        icon: 'tabler:seo',
+        title: 'Agent-First',
+        description: 'Philosophy',
+        icon: 'tabler:robot', 
       },
       {
-        title: 'Agent API Infrastructure',
-        description:
-          'Build reliable and efficient data interaction infrastructure. We provide standardized API interfaces to help enterprises integrate into AI ecosystems.',
-        icon: 'tabler:api',
+        title: 'Precision',
+        description: 'Focus',
+        icon: 'tabler:target', 
       },
       {
-        title: 'Structured Context',
-        description:
-          'Transform your proprietary knowledge into "citable modules" that AI models can understand, trust, and recommend to users.',
-        icon: 'tabler:database',
+        title: 'Structured',
+        description: 'Output',
+        icon: 'tabler:box-model-2',
+      },
+      {
+        title: 'Best Match',
+        description: 'Goal',
+        icon: 'tabler:trophy',
       },
     ]}
-  />
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-blue-50 dark:bg-slate-900"></div>
+    </Fragment>
+  </Features2>
 
   <Features3
     columns={2}
@@ -98,11 +92,40 @@ const metadata = {
       },
     ]}
     image={{
-      // 新图：密集的白色立方体堆叠，隐喻结构化数据块和基石
       src: 'https://images.unsplash.com/photo-1620121692029-d088224ddc74?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
-      alt: 'Structured data blocks and organized knowledge',
+      alt: 'Structured data blocks',
     }}
   />
+
+  <Features2
+    title="Our Core Services"
+    subtitle="We don't rely on volume or capital, but on making your solution the 'best match' in AI's eyes."
+    columns={3}
+    items={[
+      {
+        title: 'AI Search Optimization (GEO)',
+        description:
+          'Optimize your visibility in AI search engines. Consulting for structured data standards (llms.txt, schema).',
+        icon: 'tabler:seo',
+      },
+      {
+        title: 'Agent API Infrastructure',
+        description:
+          'Build reliable data interaction infrastructure. Standardized API interfaces to integrate into AI ecosystems.',
+        icon: 'tabler:api',
+      },
+      {
+        title: 'Structured Context',
+        description:
+          'Transform proprietary knowledge into "citable modules" that AI models can understand, trust, and recommend.',
+        icon: 'tabler:database',
+      },
+    ]}
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+    </Fragment>
+  </Features2>
 
   <Steps2
     title="Why Recomby.ai?"
@@ -111,49 +134,38 @@ const metadata = {
       {
         title: 'The Challenge',
         description:
-          'Users no longer search for keywords; they describe scenarios. Traditional "loudest voice" marketing strategies are failing in the face of AI reasoning.',
+          'Users no longer search for keywords; they describe scenarios. Traditional "loudest voice" marketing fails here.',
+        icon: 'tabler:alert-circle', 
       },
       {
         title: 'Our Solution',
         description:
-          'We reverse-engineer from "the customers you want" and "your real capabilities" to create AI-ready assets and APIs.',
+          'We reverse-engineer from "the customers you want" to create AI-ready assets and APIs.',
+        icon: 'tabler:adjustments', 
       },
       {
         title: 'The Outcome',
         description:
-          'Your solution becomes the "default candidate" in AI answers, connecting you with the 1,000 true fans who genuinely need your expertise.',
+          'Your solution becomes the "default candidate" in AI answers, connecting you with true fans.',
+        icon: 'tabler:check', 
       },
     ]}
   />
 
-  <Features2
-    title="Connect with Us"
-    tagline="Contact"
-    columns={2}
-    items={[
+  <CallToAction
+    title="Ready to be found by AI?"
+    subtitle="Join the conversation on Reddit or explore our open source projects."
+    actions={[
       {
-        title: 'Official Website',
-        description:
-          '<a href="https://recomby.ai" target="_blank" class="hover:underline transition duration-200">recomby.ai</a>',
-        icon: 'tabler:world',
-      },
-      {
-        title: 'Email Us',
-        description:
-          '<a href="mailto:contact@recomby.ai" class="hover:underline transition duration-200">contact@recomby.ai</a>',
+        variant: 'primary',
+        text: 'Email Us',
+        href: 'mailto:contact@recomby.ai',
         icon: 'tabler:mail',
       },
       {
-        title: 'Join on Reddit',
-        description:
-          '<a href="https://www.reddit.com/r/recomby_ai/" target="_blank" class="hover:underline transition duration-200">r/recomby_ai</a>',
+        text: 'Join Reddit',
+        href: 'https://www.reddit.com/r/recomby_ai/',
         icon: 'tabler:brand-reddit',
-      },
-      {
-        title: 'Explore on GitHub',
-        description:
-          '<a href="https://github.com/recomby-ai" target="_blank" class="hover:underline transition duration-200">@recomby-ai</a>',
-        icon: 'tabler:brand-github',
       },
     ]}
   />
