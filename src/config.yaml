@@ -5,8 +5,8 @@
 
 site:
   name: 'Recomby.ai' # [Required] Your blog name (appears in the header & browser tab)
-  site: 'https://recomby.ai' # [Required] Your live domain (essential for SEO and Sitemap)
-  base: '/' # [Default]  Sub-path (usually '/', unless deployed at example.com/blog)
+  site: 'https://hanjinchi7-droid.github.io' # [Required] Your live domain (essential for SEO and Sitemap)
+  base: '/recomby-template' # [Default]  Sub-path (usually '/', unless deployed at example.com/blog)
   trailingSlash: false # [Default]  Append trailing slash to URLs (recommended: false)
 
   subtitle: 'Get Recommended by AI, Not Left Behind by the Times' # [Optional] Custom homepage subtitle (fallbacks to SEO description if empty)
