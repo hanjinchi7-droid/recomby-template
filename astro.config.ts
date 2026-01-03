@@ -18,18 +18,22 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 
 const configYaml = fs.readFileSync(path.resolve(__dirname, './src/config.yaml'), 'utf8');
-const siteMatch = configYaml.match(/site:\s*['"]?([^'"\n]+)['"]?/);
-const baseMatch = configYaml.match(/basePath:\s*['"]?([^'"\n]+)['"]?/);
 
-const SITE_URL = siteMatch ? siteMatch[1].trim() : 'https://example.com';
+
+const domainMatch = configYaml.match(/^\s+site:\s*['"]?(https?:\/\/[^'"\s\n\r]+)['"]?/m);
+
+const baseMatch = configYaml.match(/^\s+base:\s*['"]?([^'"\s\n\r]+)['"]?/m);
+
+
+const SITE_URL = domainMatch ? domainMatch[1].trim() : 'https://example.com';
 const BASE_PATH = baseMatch ? baseMatch[1].trim() : '/';
-
 
 const hasExternalScripts = false;
 const whenExternalScripts = (items: (() => AstroIntegration) | (() => AstroIntegration)[] = []) =>
   hasExternalScripts ? (Array.isArray(items) ? items.map((item) => item()) : [items()]) : [];
 
 export default defineConfig({
+
   site: SITE_URL,
   base: BASE_PATH,
 
@@ -40,48 +44,30 @@ export default defineConfig({
   output: 'static',
 
   integrations: [
-    tailwind({
-      applyBaseStyles: false,
-    }),
+    tailwind({ applyBaseStyles: false }),
     sitemap(),
     mdx(),
     icon({
       include: {
         tabler: ['*'],
-        'flat-color-icons': [
-          'template', 'gallery', 'approval', 'document', 'advertising',
-          'currency-exchange', 'voice-presentation', 'business-contact', 'database',
-        ],
+        'flat-color-icons': ['template', 'gallery', 'approval', 'document', 'advertising', 'currency-exchange', 'voice-presentation', 'business-contact', 'database'],
       },
     }),
-
     ...whenExternalScripts(() =>
       partytown({
         config: { forward: ['dataLayer.push'] },
       })
     ),
-
     compress({
       CSS: true,
-      HTML: {
-        'html-minifier-terser': {
-          removeAttributeQuotes: false,
-        },
-      },
+      HTML: { 'html-minifier-terser': { removeAttributeQuotes: false } },
       Image: false,
       JavaScript: true,
       SVG: false,
       Logger: 1,
     }),
-
-    astrowind({
-      config: './src/config.yaml',
-    }),
+    astrowind({ config: './src/config.yaml' }),
   ],
-
-  image: {
-    domains: ['cdn.pixabay.com'],
-  },
 
   markdown: {
     remarkPlugins: [readingTimeRemarkPlugin],
@@ -90,9 +76,7 @@ export default defineConfig({
 
   vite: {
     resolve: {
-      alias: {
-        '~': path.resolve(__dirname, './src'),
-      },
+      alias: { '~': path.resolve(__dirname, './src') },
     },
   },
 });
