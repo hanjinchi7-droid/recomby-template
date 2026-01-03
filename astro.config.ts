@@ -24,7 +24,7 @@ const whenExternalScripts = (items: (() => AstroIntegration) | (() => AstroInteg
 export default defineConfig({
   site: 'https://hanjinchi7-droid.github.io',
 
-  base: '/recomby-template',
+  base: '/recomby-template/',
 
   build: {
     assets: 'assets',
